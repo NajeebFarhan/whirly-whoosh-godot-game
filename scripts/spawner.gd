@@ -14,7 +14,7 @@ func _ready():
 	
 	
 func _on_timer_timeout():
-	var spawn_pos: Vector2i = Vector2i(random.randi_range(100, 700), spawn_pos_y[random.randi() % len(spawn_pos_y)])
+	var spawn_pos: Vector2i = Vector2i(random.randi_range(0, 400), spawn_pos_y.pick_random())
 	
 	var new_particle
 	
@@ -23,7 +23,7 @@ func _on_timer_timeout():
 	else:
 		new_particle = obstacles.instantiate()
 	
-	new_particle.particle_velocity = particle_velocity
+	new_particle.set_particle_velocity(particle_velocity)
 	new_particle.position = spawn_pos
 	
 	add_child(new_particle)
