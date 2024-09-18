@@ -2,9 +2,6 @@ extends Node2D
 
 @export var angular_velocity: float = 3 
 
-func _ready():
-	print("script initiated")
-
 func _physics_process(delta):
 	rotate(angular_velocity * delta)
 	

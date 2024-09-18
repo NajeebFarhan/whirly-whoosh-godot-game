@@ -5,6 +5,7 @@
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_yjhaj")
+angular_velocity = 2.0
 
 [node name="ball" parent="." instance=ExtResource("2_bhau4")]
 position = Vector2(0, -160)

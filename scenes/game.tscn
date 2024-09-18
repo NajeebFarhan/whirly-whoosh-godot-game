@@ -1,10 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4hyh4cuijtow"]
+[gd_scene load_steps=7 format=3 uid="uid://b4hyh4cuijtow"]
 
+[ext_resource type="Texture2D" uid="uid://cvmn3fva4g0wg" path="res://assets/background.png" id="1_brqha"]
 [ext_resource type="PackedScene" uid="uid://c8dclfbhosk0c" path="res://scenes/player.tscn" id="1_nvsjd"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="1_o5qon"]
+[ext_resource type="Texture2D" uid="uid://dilbsqvohfift" path="res://assets/playfieldstrip.png" id="2_0ov4n"]
+[ext_resource type="PackedScene" uid="uid://csikdatuv80tk" path="res://scenes/spawner.tscn" id="4_xa2by"]
+[ext_resource type="PackedScene" uid="uid://qf1igcbuetx2" path="res://scenes/despawn_zone.tscn" id="6_5fqq3"]
 
 [node name="game" type="Node2D"]
+
+[node name="Debug" type="Node" parent="."]
+script = ExtResource("1_o5qon")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(155, 36)
+scale = Vector2(2, 1)
+texture = ExtResource("1_brqha")
+
+[node name="Playfieldstrip" type="Sprite2D" parent="Background"]
+position = Vector2(0, -36)
+scale = Vector2(1, 0.65)
+texture = ExtResource("2_0ov4n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(155, -2.71011e-05)
 
 [node name="player" parent="." instance=ExtResource("1_nvsjd")]
+angular_velocity = 2.4
+
+[node name="spawner" parent="." instance=ExtResource("4_xa2by")]
+position = Vector2(731, 0)
+
+[node name="despawn_zone" parent="." instance=ExtResource("6_5fqq3")]
+position = Vector2(-1756, 0)
