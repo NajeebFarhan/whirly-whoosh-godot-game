@@ -29,7 +29,7 @@ position = Vector2(155, -2.71011e-05)
 angular_velocity = 2.4
 
 [node name="spawner" parent="." instance=ExtResource("4_xa2by")]
-position = Vector2(731, 0)
+position = Vector2(2075, 0)
 
 [node name="despawn_zone" parent="." instance=ExtResource("6_5fqq3")]
 position = Vector2(-1756, 0)

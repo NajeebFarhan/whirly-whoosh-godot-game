@@ -7,7 +7,7 @@ func _ready():
 	#random.randomize()
 	pass
 
-func _process(delta):
+func _process(_delta):
 	#print(random.randi() % 50 + 1)
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
