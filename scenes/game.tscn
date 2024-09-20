@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4hyh4cuijtow"]
+[gd_scene load_steps=10 format=3 uid="uid://b4hyh4cuijtow"]
 
 [ext_resource type="Texture2D" uid="uid://cvmn3fva4g0wg" path="res://assets/background.png" id="1_brqha"]
 [ext_resource type="PackedScene" uid="uid://c8dclfbhosk0c" path="res://scenes/player.tscn" id="1_nvsjd"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_4wpls"]
 [ext_resource type="PackedScene" uid="uid://csikdatuv80tk" path="res://scenes/spawner.tscn" id="4_xa2by"]
 [ext_resource type="PackedScene" uid="uid://qf1igcbuetx2" path="res://scenes/despawn_zone.tscn" id="6_5fqq3"]
-[ext_resource type="Script" path="res://scripts/temp_hud.gd" id="8_bp8qp"]
+[ext_resource type="Script" path="res://scripts/health_ui.gd" id="6_a7ob4"]
+[ext_resource type="Script" path="res://scripts/score_ui.gd" id="8_bp8qp"]
 
 [node name="game" type="Node2D"]
 
@@ -31,6 +32,29 @@ texture = ExtResource("2_0ov4n")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 0)
 
+[node name="Score" type="Label" parent="Camera2D"]
+offset_left = -554.0
+offset_top = -305.0
+offset_right = -431.0
+offset_bottom = -282.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Score 0"
+script = ExtResource("8_bp8qp")
+
+[node name="Health" type="Label" parent="Camera2D"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 478.0
+offset_top = -299.0
+offset_right = 543.0
+offset_bottom = -276.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+text = "Health 0"
+script = ExtResource("6_a7ob4")
+
 [node name="Player" parent="." instance=ExtResource("1_nvsjd")]
 angular_velocity = 2.4
 
@@ -39,14 +63,6 @@ position = Vector2(2075, 0)
 
 [node name="DespawnZone" parent="." instance=ExtResource("6_5fqq3")]
 position = Vector2(-1765, 0)
-
-[node name="Label" type="Label" parent="."]
-offset_left = -176.0
-offset_top = -224.0
-offset_right = -34.0
-offset_bottom = -201.0
-text = "Score 0 health 0"
-script = ExtResource("8_bp8qp")
 
 [connection signal="update_health" from="Spawner" to="GameManager" method="decrease_health"]
 [connection signal="update_score" from="Spawner" to="GameManager" method="increase_score"]
