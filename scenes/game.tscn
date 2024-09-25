@@ -14,14 +14,17 @@ script = ExtResource("1_fi3wt")
 position = Vector2(155, 36)
 scale = Vector2(2, 1)
 texture = ExtResource("1_brqha")
+metadata/_edit_lock_ = true
 
 [node name="PlayfieldStrip" type="Sprite2D" parent="Background"]
 position = Vector2(0, -36)
 scale = Vector2(1, 0.409999)
 texture = ExtResource("2_0ov4n")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_nvsjd")]
 

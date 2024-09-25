@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bct5c4kaf2k7n"]
+[gd_scene load_steps=5 format=3 uid="uid://bct5c4kaf2k7n"]
 
 [ext_resource type="Texture2D" uid="uid://cvmn3fva4g0wg" path="res://assets/background.png" id="1_k6tdu"]
 [ext_resource type="Script" path="res://scripts/game_over_score.gd" id="2_m4oar"]
 [ext_resource type="Script" path="res://scripts/restart_button.gd" id="3_04oxg"]
+[ext_resource type="Script" path="res://scripts/quite_button.gd" id="4_dyg3r"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -21,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k6tdu")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -52,9 +54,15 @@ horizontal_alignment = 1
 uppercase = true
 script = ExtResource("2_m4oar")
 
-[node name="restart" type="Button" parent="VBoxContainer"]
+[node name="RestartGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Restart"
 script = ExtResource("3_04oxg")
 
-[connection signal="pressed" from="VBoxContainer/restart" to="VBoxContainer/restart" method="_on_pressed"]
+[node name="QuiteGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("4_dyg3r")
+
+[connection signal="pressed" from="VBoxContainer/RestartGame" to="VBoxContainer/RestartGame" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuiteGame" to="VBoxContainer/QuiteGame" method="_on_pressed"]
