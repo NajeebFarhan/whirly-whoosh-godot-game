@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4hyh4cuijtow"]
+
+[ext_resource type="Texture2D" uid="uid://cvmn3fva4g0wg" path="res://assets/background.png" id="1_brqha"]
+[ext_resource type="PackedScene" uid="uid://c8dclfbhosk0c" path="res://scenes/player.tscn" id="1_nvsjd"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="1_o5qon"]
+[ext_resource type="Texture2D" uid="uid://dilbsqvohfift" path="res://assets/playfieldstrip.png" id="2_0ov4n"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_4wpls"]
+[ext_resource type="PackedScene" uid="uid://csikdatuv80tk" path="res://scenes/spawner.tscn" id="4_xa2by"]
+[ext_resource type="PackedScene" uid="uid://qf1igcbuetx2" path="res://scenes/despawn_zone.tscn" id="6_5fqq3"]
+[ext_resource type="Script" path="res://scripts/health_ui.gd" id="6_a7ob4"]
+[ext_resource type="Script" path="res://scripts/score_ui.gd" id="8_bp8qp"]
+
+[node name="game" type="Node2D"]
+
+[node name="Debug" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_o5qon")
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_4wpls")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(155, 36)
+scale = Vector2(2, 1)
+texture = ExtResource("1_brqha")
+metadata/_edit_lock_ = true
+
+[node name="PlayfieldStrip" type="Sprite2D" parent="Background"]
+position = Vector2(0, -36)
+scale = Vector2(1, 0.409999)
+texture = ExtResource("2_0ov4n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = -469.0
+offset_top = -260.0
+offset_right = -404.0
+offset_bottom = -210.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Score 0"
+script = ExtResource("8_bp8qp")
+
+[node name="Health" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Health 0"
+script = ExtResource("6_a7ob4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
+
+[node name="Player" parent="." instance=ExtResource("1_nvsjd")]
+
+[node name="Spawner" parent="." instance=ExtResource("4_xa2by")]
+position = Vector2(2075, 0)
+
+[node name="DespawnZone" parent="." instance=ExtResource("6_5fqq3")]
+position = Vector2(-1765, 0)
+
+[connection signal="update_health" from="Spawner" to="GameManager" method="decrease_health"]
+[connection signal="update_score" from="Spawner" to="GameManager" method="increase_score"]

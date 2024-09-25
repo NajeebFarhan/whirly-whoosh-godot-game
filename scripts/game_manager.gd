@@ -1,20 +1,14 @@
 extends Node
 
+@export var default_health = 3
 var score = 0
-var health = 5
-
-func get_score() -> int:
-	return score
-	
-func get_health() -> int:
-	return health
+var health = default_health
 
 func increase_score() -> void:
 	score += 1
 	
 func decrease_health() -> void:
 	health -= 1
-	
-func _process(_body):
 	if health <= 0:
-		get_tree().reload_current_scene()
+		#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")

@@ -5,5 +5,6 @@ extends Node2D
 func _physics_process(delta):
 	rotate(angular_velocity * delta)
 	
+	
 	if Input.is_action_just_pressed("toggle_rotation"):
 		angular_velocity *= -1
