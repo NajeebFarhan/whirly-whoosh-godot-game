@@ -37,4 +37,3 @@ position = Vector2(-1765, 0)
 collision_layer = 1
 
 [node name="HUD" parent="." instance=ExtResource("7_uc2xi")]
-visible = false

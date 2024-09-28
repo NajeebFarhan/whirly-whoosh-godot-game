@@ -1,8 +1,8 @@
 extends Node
 
-var default_health = 3
-var score = 0
-var health = default_health
+var default_health := 3
+var score := 0
+var health := default_health
 
 func increase_score() -> void:
 	score += 1

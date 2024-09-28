@@ -3,14 +3,14 @@ extends Button
 var restart_button: Button
 var quit_button: Button
 
-var paused = false
+var paused := false
 
 func _ready():
 	restart_button = get_parent().get_node("RestartButton")
 	quit_button = get_parent().get_node("QuitButton")
 	
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		paused = !paused
 		get_tree().paused = paused

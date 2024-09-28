@@ -1,9 +1,7 @@
 extends Node2D
 
-var hud_scene
-var hud
+var hud: CanvasLayer
 
 func _ready():
-	hud_scene = preload("res://scenes/hud.tscn")
-	hud = hud_scene.instantiate()
-	add_child(hud)
+	hud = $HUD
+	hud.visible = true

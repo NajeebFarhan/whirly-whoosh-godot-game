@@ -3,63 +3,72 @@
 [ext_resource type="Script" path="res://scripts/score_ui.gd" id="1_0ugmr"]
 [ext_resource type="Script" path="res://scripts/health_ui.gd" id="2_qs87e"]
 [ext_resource type="Script" path="res://scripts/pause_button.gd" id="3_grq4f"]
-[ext_resource type="Script" path="res://scripts/restart_button.gd" id="4_roy3s"]
+[ext_resource type="Script" path="res://scripts/start_restart_button.gd" id="4_roy3s"]
 [ext_resource type="Script" path="res://scripts/quite_button.gd" id="5_3c03j"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -225.0
+offset_right = 44.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Stats" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 3
 
-[node name="Score" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="MarginContainer/Stats"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Score 0"
+horizontal_alignment = 1
 script = ExtResource("1_0ugmr")
 
-[node name="Health" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Health" type="Label" parent="MarginContainer/Stats"]
 layout_mode = 2
-text = "Health 0"
+text = "Health 3"
+horizontal_alignment = 1
 script = ExtResource("2_qs87e")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.5
-offset_right = 32.5
-offset_bottom = 31.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 20
+offset_right = 90.0
+offset_bottom = 51.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="PauseMenu" type="VBoxContainer" parent="MarginContainer2"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="PauseButton" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="PauseButton" type="Button" parent="MarginContainer2/PauseMenu"]
 process_mode = 3
 layout_mode = 2
 focus_mode = 0
 text = "Pause(Esc)"
 script = ExtResource("3_grq4f")
 
-[node name="RestartButton" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="MarginContainer2/PauseMenu"]
 visible = false
 layout_mode = 2
 text = "Restart"
 script = ExtResource("4_roy3s")
 
-[node name="QuitButton" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MarginContainer2/PauseMenu"]
 visible = false
 layout_mode = 2
 text = "Quit"
 script = ExtResource("5_3c03j")
 
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/PauseButton" to="MarginContainer2/VBoxContainer/PauseButton" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/RestartButton" to="MarginContainer2/VBoxContainer/RestartButton" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/QuitButton" to="MarginContainer2/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/PauseMenu/PauseButton" to="MarginContainer2/PauseMenu/PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/PauseMenu/RestartButton" to="MarginContainer2/PauseMenu/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/PauseMenu/QuitButton" to="MarginContainer2/PauseMenu/QuitButton" method="_on_pressed"]
