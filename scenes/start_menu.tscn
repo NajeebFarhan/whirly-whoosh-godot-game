@@ -23,48 +23,80 @@ texture = ExtResource("1_fk666")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="StartMenu" type="VBoxContainer" parent="."]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.5
+offset_top = -89.5
+offset_right = 218.5
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="StartMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="Title" type="Label" parent="StartMenu/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Whirly Whoosh"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="StartGame" type="Button" parent="StartMenu/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("2_u1df4")
+
+[node name="HowToPlay" type="Button" parent="StartMenu/VBoxContainer"]
+layout_mode = 2
+text = "How to Play"
+
+[node name="QuitGame" type="Button" parent="StartMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+script = ExtResource("3_ruk57")
+
+[node name="InstructionMenu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -16.5
-offset_right = 137.0
-offset_bottom = 16.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="InstructionMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_bottom = 20
-
-[node name="Title" type="Label" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Whirly Whoosh"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="StartGame" type="Button" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Start"
-script = ExtResource("2_u1df4")
-
-[node name="QuitGame" type="Button" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Quit
+text = "Back
 "
-script = ExtResource("3_ruk57")
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/StartGame" to="VBoxContainer/VBoxContainer/StartGame" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/QuitGame" to="VBoxContainer/VBoxContainer/QuitGame" method="_on_pressed"]
+[node name="RichTextLabel" type="RichTextLabel" parent="InstructionMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "**hello**"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="pressed" from="StartMenu/VBoxContainer/StartGame" to="StartMenu/VBoxContainer/StartGame" method="_on_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/QuitGame" to="StartMenu/VBoxContainer/QuitGame" method="_on_pressed"]
