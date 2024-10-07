@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://385y11veuexf"]
+[gd_scene load_steps=5 format=3 uid="uid://385y11veuexf"]
 
 [ext_resource type="Script" path="res://scripts/particle.gd" id="1_2rgv1"]
 [ext_resource type="Texture2D" uid="uid://cbc6j4ko5thxv" path="res://assets/obstacles.png" id="1_ksg7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8njmu"]
+
+[sub_resource type="Curve" id="Curve_hw7ng"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="obstacle" type="Area2D"]
 collision_layer = 2
@@ -17,5 +21,20 @@ texture = ExtResource("1_ksg7g")
 scale = Vector2(1.25, 1.25)
 shape = SubResource("RectangleShape2D_8njmu")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.15
+one_shot = true
+texture = ExtResource("1_ksg7g")
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+scale_amount_min = 0.05
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_hw7ng")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered_obstacle"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_obstacle_finished"]

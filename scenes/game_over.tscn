@@ -66,6 +66,7 @@ text = "Restart"
 script = ExtResource("3_04oxg")
 
 [node name="QuiteGame" type="Button" parent="VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Quit"
 script = ExtResource("4_dyg3r")
